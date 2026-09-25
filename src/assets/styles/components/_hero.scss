@@ -1,0 +1,304 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "../functions" as *;
+
+.hero {
+	position: relative;
+	display: grid;
+	place-items: end end;
+	overflow: hidden;
+	padding: vc(104) vc(20) vc(48);
+	min-height: 100dvh;
+
+	&::before {
+		content: "";
+		position: absolute;
+		z-index: 0;
+		background:
+			linear-gradient(90deg, transparent 0%, transparent 42%, rgb(4 1 10 / 55%) 78%, rgb(4 1 10 / 78%) 100%),
+			linear-gradient(0deg, rgb(4 1 10 / 70%) 0%, transparent 42%);
+		pointer-events: none;
+		inset: 0;
+	}
+
+	&__content {
+		position: relative;
+		z-index: 1;
+		width: min(100%, vc(760));
+		text-align: right;
+	}
+
+	&__signal,
+	&__brand-line,
+	&__rule,
+	&__headline,
+	&__text,
+	&__cta,
+	&__compass {
+		visibility: hidden;
+		opacity: 0;
+	}
+
+	&__signal {
+		display: inline-flex;
+		align-items: center;
+		justify-content: flex-end;
+		margin: 0 0 vc(20);
+		font-weight: 600;
+		font-size: vc(12);
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: $color-accent-bright;
+		gap: vc(10);
+	}
+
+	&__signal-dot {
+		display: inline-block;
+		flex-shrink: 0;
+		border-radius: 50%;
+		width: vc(7);
+		height: vc(7);
+		box-shadow: 0 0 vc(12) rgb(255 122 24 / 75%);
+		background: $color-accent;
+	}
+
+	&__brand {
+		display: grid;
+		margin: 0 0 vc(18);
+		gap: vc(2);
+	}
+
+	&__brand-line {
+		font-weight: 800;
+		font-size: vc(46);
+		line-height: 0.92;
+		letter-spacing: -0.05em;
+		text-transform: uppercase;
+		color: $color-ink;
+
+		&--accent {
+			text-shadow: 0 0 vc(36) rgb(255 122 24 / 28%);
+			color: $color-accent-bright;
+		}
+
+		@include desktop {
+			font-size: vc(96);
+		}
+	}
+
+	&__rule {
+		margin: 0 0 vc(20) auto;
+		width: vc(72);
+		height: 1px;
+		background: linear-gradient(90deg, transparent, $color-accent-bright);
+		transform-origin: right center;
+	}
+
+	&__headline {
+		margin: 0 0 vc(14);
+		font-weight: 600;
+		font-size: vc(18);
+		line-height: 1.35;
+		letter-spacing: -0.02em;
+		color: $color-ink-soft;
+
+		@include desktop {
+			font-size: vc(24);
+		}
+	}
+
+	&__text {
+		margin: 0 0 vc(36) auto;
+		max-width: vc(620);
+		font-size: vc(15);
+		line-height: calc(25 / 15);
+		color: $color-muted;
+
+		@include desktop {
+			max-width: vc(680);
+			font-size: vc(17);
+			line-height: calc(28 / 17);
+		}
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		gap: vc(12);
+	}
+
+	&__cta {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid transparent;
+		border-radius: vc(999);
+		padding: vc(13) vc(24);
+		min-height: vc(50);
+		font-weight: 600;
+		font-size: vc(14);
+		transition:
+			background-color $duration-fast $easing-out,
+			color $duration-fast $easing-out,
+			border-color $duration-fast $easing-out,
+			box-shadow $duration-fast $easing-out,
+			transform $duration-fast $easing-out;
+
+		&--primary {
+			box-shadow: 0 0 vc(28) rgb(255 122 24 / 28%);
+			color: #1a0a05;
+			background: $color-accent;
+
+			&:hover {
+				box-shadow: 0 0 vc(36) rgb(255 179 71 / 40%);
+				background: $color-accent-bright;
+			}
+		}
+
+		&--ghost {
+			border-color: rgb(247 244 255 / 22%);
+			color: $color-ink;
+			background: rgb(4 1 10 / 35%);
+			backdrop-filter: blur(8px);
+
+			&:hover {
+				border-color: $color-accent-bright;
+				color: $color-accent-bright;
+			}
+		}
+	}
+
+	&__compass {
+		position: absolute;
+		left: vc(20);
+		bottom: vc(28);
+		z-index: 1;
+		display: none;
+		width: vc(72);
+		height: vc(72);
+
+		@include desktop {
+			left: vc(80);
+			display: grid;
+			place-items: center;
+		}
+	}
+
+	&__compass-ring {
+		position: absolute;
+		border: 1px solid rgb(247 244 255 / 22%);
+		border-radius: 50%;
+		box-shadow:
+			inset 0 0 0 1px rgb(255 122 24 / 12%),
+			0 0 vc(20) rgb(4 1 10 / 40%);
+		background: rgb(4 1 10 / 45%);
+		inset: 0;
+	}
+
+	&__compass-label {
+		position: absolute;
+		font-weight: 700;
+		font-size: vc(9);
+		letter-spacing: 0.08em;
+		color: rgb(247 244 255 / 55%);
+
+		&--n {
+			left: 50%;
+			top: vc(6);
+			color: $color-accent-bright;
+			transform: translateX(-50%);
+		}
+
+		&--e {
+			right: vc(8);
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		&--s {
+			left: 50%;
+			bottom: vc(6);
+			transform: translateX(-50%);
+		}
+
+		&--w {
+			left: vc(7);
+			top: 50%;
+			transform: translateY(-50%);
+		}
+	}
+
+	&__compass-tick {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 1px;
+		height: vc(6);
+		background: rgb(247 244 255 / 28%);
+		transform-origin: center vc(30);
+
+		&--ne {
+			transform: translate(-50%, -50%) rotate(45deg);
+		}
+
+		&--se {
+			transform: translate(-50%, -50%) rotate(135deg);
+		}
+
+		&--sw {
+			transform: translate(-50%, -50%) rotate(225deg);
+		}
+
+		&--nw {
+			transform: translate(-50%, -50%) rotate(315deg);
+		}
+	}
+
+	&__compass-needle {
+		position: relative;
+		z-index: 1;
+		width: vc(10);
+		height: vc(48);
+		transform-origin: center center;
+		will-change: transform;
+	}
+
+	&__compass-needle-north,
+	&__compass-needle-south {
+		position: absolute;
+		left: 50%;
+		border-style: solid;
+		width: 0;
+		height: 0;
+		transform: translateX(-50%);
+	}
+
+	&__compass-needle-north {
+		top: 0;
+		border-width: 0 vc(5) vc(22);
+		border-color: transparent transparent $color-accent;
+		filter: drop-shadow(0 0 vc(6) rgb(255 122 24 / 55%));
+	}
+
+	&__compass-needle-south {
+		bottom: 0;
+		border-width: vc(22) vc(5) 0;
+		border-color: rgb(247 244 255 / 45%) transparent transparent;
+	}
+
+	&__compass-hub {
+		position: absolute;
+		z-index: 2;
+		border: 1px solid rgb(255 179 71 / 55%);
+		border-radius: 50%;
+		width: vc(8);
+		height: vc(8);
+		box-shadow: 0 0 vc(10) rgb(255 122 24 / 60%);
+		background: $color-accent-bright;
+	}
+
+	@include desktop {
+		padding: vc(120) vc(80) vc(72);
+	}
+}

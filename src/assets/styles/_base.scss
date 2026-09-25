@@ -1,0 +1,68 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+	scrollbar-gutter: stable;
+}
+
+body {
+	margin: 0;
+	font-family: $font-primary;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	line-height: 1.5;
+	text-rendering: optimizelegibility;
+	color: $color-ink;
+	background-color: $color-bg;
+}
+
+img,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+button {
+	font: inherit;
+	cursor: pointer;
+}
+
+:root {
+	--width-base: 360;
+	--width-current: 100vmin;
+	--width-multiplier: calc(var(--width-current) / var(--width-base));
+	--color-bg: #{$color-bg};
+	--color-ink: #{$color-ink};
+	--color-accent: #{$color-accent};
+	--color-surface: #{$color-surface};
+
+	@include desktop {
+		--width-base: 1440;
+		--width-current: 100vw;
+	}
+
+	@include desktop-aspect {
+		--width-base: 786;
+		--width-current: 100vh;
+	}
+}
+
+#root {
+	min-height: 100vh;
+}
+
+.is-loading {
+	overflow: hidden;
+}

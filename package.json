@@ -1,0 +1,37 @@
+{
+  "name": "mysite",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5173",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint:style": "stylelint \"src/**/*.scss\""
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.15.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@stylistic/stylelint-plugin": "^5.3.0",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "postcss-scss": "^4.0.9",
+    "sass": "^1.104.1",
+    "stylelint": "^17.15.0",
+    "stylelint-declaration-block-no-ignored-properties": "^3.0.0",
+    "stylelint-order": "^8.1.1",
+    "stylelint-scss": "^7.3.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  }
+}

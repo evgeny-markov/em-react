@@ -1,0 +1,73 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "../functions" as *;
+
+.work {
+	&__list {
+		display: grid;
+		list-style: none;
+		margin: vc(48) 0 0;
+		padding: 0;
+		gap: 0;
+	}
+
+	&__item {
+		border-top: 1px solid $color-line;
+		transition: border-color $duration-fast $easing-out;
+
+		&:last-child {
+			border-bottom: 1px solid $color-line;
+		}
+	}
+
+	&__link {
+		display: grid;
+		padding: vc(22) 0;
+		transition: color $duration-fast $easing-out;
+		gap: vc(8);
+
+		&:hover {
+			color: $color-accent-bright;
+
+			.work__arrow {
+				color: $color-secondary;
+				transform: translateX(vc(6));
+			}
+		}
+
+		@include desktop {
+			align-items: baseline;
+			grid-template-columns: 1fr auto;
+			padding: vc(28) 0;
+			gap: vc(24);
+		}
+	}
+
+	&__name {
+		margin: 0;
+		font-weight: 600;
+		font-size: vc(20);
+		letter-spacing: -0.02em;
+
+		@include desktop {
+			font-size: vc(28);
+		}
+	}
+
+	&__meta {
+		margin: 0;
+		font-size: vc(14);
+		color: $color-muted;
+	}
+
+	&__arrow {
+		display: none;
+		font-size: vc(22);
+		color: $color-accent;
+		transition: transform $duration-fast $easing-out;
+
+		@include desktop {
+			display: block;
+		}
+	}
+}

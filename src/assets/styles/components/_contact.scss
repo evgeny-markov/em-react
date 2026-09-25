@@ -1,0 +1,95 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "../functions" as *;
+
+.contact {
+	padding-bottom: vc(80);
+
+	&__panel {
+		display: grid;
+		border: 1px solid $color-line;
+		border-radius: vc(28);
+		padding: vc(36) vc(24);
+		box-shadow: 0 0 0 1px rgb(196 77 255 / 12%);
+		background:
+			radial-gradient(ellipse 80% 70% at 0% 0%, rgb(196 77 255 / 22%), transparent 55%),
+			radial-gradient(ellipse 70% 60% at 100% 100%, rgb(255 122 24 / 18%), transparent 50%),
+			$color-surface;
+		gap: vc(28);
+
+		@include desktop {
+			align-items: end;
+			grid-template-columns: 1.4fr auto;
+			padding: vc(56) vc(48);
+			gap: vc(48);
+		}
+	}
+
+	&__title {
+		margin: 0 0 vc(14);
+		font-weight: 700;
+		font-size: vc(28);
+		letter-spacing: -0.03em;
+
+		@include desktop {
+			font-size: vc(40);
+		}
+	}
+
+	&__text {
+		margin: 0;
+		font-size: vc(16);
+		line-height: calc(26 / 16);
+		color: $color-ink-soft;
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: vc(12);
+	}
+
+	&__link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: vc(999);
+		padding: vc(12) vc(20);
+		min-height: vc(48);
+		box-shadow: 0 0 vc(20) rgb(255 122 24 / 30%);
+		font-weight: 600;
+		font-size: vc(14);
+		color: #1a0a05;
+		background: linear-gradient(135deg, $color-accent 0%, $color-accent-bright 100%);
+		transition:
+			background $duration-fast $easing-out,
+			box-shadow $duration-fast $easing-out;
+
+		&:hover {
+			box-shadow: 0 0 vc(28) rgb(255 179 71 / 45%);
+			background: linear-gradient(135deg, $color-accent-bright 0%, $color-accent 100%);
+		}
+
+		&--ghost {
+			border: 1px solid $color-line;
+			color: $color-ink;
+			background: transparent;
+
+			&:hover {
+				border-color: $color-accent;
+				color: $color-accent;
+				background: transparent;
+			}
+		}
+	}
+
+	&__note {
+		margin: vc(24) 0 0;
+		font-size: vc(13);
+		color: $color-muted;
+	}
+
+	@include desktop {
+		padding-bottom: vc(120);
+	}
+}

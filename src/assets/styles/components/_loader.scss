@@ -1,0 +1,63 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "../functions" as *;
+
+.loader {
+	position: fixed;
+	z-index: 1000;
+	display: grid;
+	place-items: center;
+	color: $color-loader-ink;
+	background: $color-loader-bg;
+	inset: 0;
+
+	&__inner {
+		display: grid;
+		justify-items: center;
+		padding: vc(24);
+		width: min(100%, vc(300));
+	}
+
+	&__meta {
+		display: grid;
+		width: 100%;
+		text-align: center;
+		gap: vc(10);
+	}
+
+	&__label {
+		margin: 0;
+		font-weight: 600;
+		font-size: vc(12);
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		color: rgb(247 244 255 / 58%);
+	}
+
+	&__percent {
+		margin: 0;
+		font-weight: 800;
+		font-variant-numeric: tabular-nums;
+		font-size: vc(52);
+		letter-spacing: -0.045em;
+		color: $color-ink;
+		text-shadow: 0 0 vc(24) rgb(255 122 24 / 28%);
+	}
+
+	&__bar {
+		overflow: hidden;
+		width: 100%;
+		height: vc(3);
+		border-radius: vc(999);
+		background: rgb(247 244 255 / 10%);
+	}
+
+	&__bar-fill {
+		width: 100%;
+		height: 100%;
+		border-radius: inherit;
+		background: $color-accent;
+		transform-origin: left center;
+		box-shadow: 0 0 vc(12) rgb(255 122 24 / 45%);
+	}
+}

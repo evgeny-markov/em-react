@@ -1,0 +1,201 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "../functions" as *;
+
+.nav {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 80;
+	pointer-events: none;
+
+	&__bar {
+		position: relative;
+		z-index: 2;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: vc(16) vc(20);
+		pointer-events: auto;
+
+		@include desktop {
+			padding: vc(20) vc(80);
+		}
+	}
+
+	&__brand {
+		position: relative;
+		z-index: 1;
+		font-weight: 800;
+		font-size: vc(15);
+		letter-spacing: 0.1em;
+		color: $color-ink;
+		transition: color $duration-fast $easing-out;
+
+		&:hover {
+			color: $color-accent-bright;
+		}
+	}
+
+	&__burger {
+		position: relative;
+		z-index: 1;
+		border: 0;
+		padding: 0;
+		width: 24px;
+		height: 18px;
+		background: transparent;
+		cursor: pointer;
+	}
+
+	&__burger-line {
+		position: absolute;
+		left: 0;
+		display: block;
+		width: 100%;
+		height: 2px;
+		background: $color-ink;
+		transform-origin: center;
+		transition:
+			top $duration-base $easing-out,
+			transform $duration-base $easing-out,
+			opacity $duration-fast $easing-out;
+
+		&:nth-child(1) {
+			top: 0;
+		}
+
+		&:nth-child(2) {
+			top: 8px;
+		}
+
+		&:nth-child(3) {
+			top: 16px;
+		}
+	}
+
+	&__panel {
+		position: fixed;
+		z-index: 1;
+		display: none;
+		place-items: center;
+		width: 100%;
+		height: 100%;
+		min-height: 100dvh;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: auto;
+		inset: 0;
+		background: rgb(4 1 10 / 72%);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+	}
+
+	&__panel-close-area {
+		position: absolute;
+		border: 0;
+		padding: 0;
+		background: transparent;
+		cursor: pointer;
+		inset: 0;
+	}
+
+	&__list {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		list-style: none;
+		margin: 0;
+		padding: vc(96) vc(20) vc(40);
+		width: min(100%, vc(520));
+		text-align: right;
+		gap: vc(8);
+
+		@include desktop {
+			padding: vc(120) vc(80) vc(64);
+			gap: vc(12);
+		}
+	}
+
+	&__item {
+		border-bottom: 1px solid rgb(247 244 255 / 10%);
+	}
+
+	&__link {
+		display: flex;
+		align-items: baseline;
+		justify-content: flex-end;
+		padding: vc(16) 0;
+		color: $color-ink;
+		transition: color $duration-fast $easing-out;
+		gap: vc(16);
+
+		&:hover {
+			color: $color-accent-bright;
+
+			.nav__link-index {
+				color: $color-accent-bright;
+			}
+		}
+
+		@include desktop {
+			padding: vc(18) 0;
+		}
+	}
+
+	&__link-index {
+		font-weight: 600;
+		font-size: vc(12);
+		letter-spacing: 0.12em;
+		color: $color-muted;
+		transition: color $duration-fast $easing-out;
+	}
+
+	&__link-label {
+		font-weight: 700;
+		font-size: vc(28);
+		letter-spacing: -0.03em;
+		text-transform: uppercase;
+
+		@include desktop {
+			font-size: vc(40);
+		}
+	}
+
+	&.is-open {
+		.nav__bar {
+			background: transparent;
+			border: 0;
+			backdrop-filter: none;
+		}
+
+		.nav__burger-line {
+			background: $color-ink;
+
+			&:nth-child(1) {
+				top: 8px;
+				transform: rotate(45deg);
+			}
+
+			&:nth-child(2) {
+				opacity: 0;
+			}
+
+			&:nth-child(3) {
+				top: 8px;
+				transform: rotate(-45deg);
+			}
+		}
+	}
+}
+
+.is-nav-open {
+	overflow: hidden;
+}
+
+.is-nav-open .nav {
+	right: 0;
+	padding-right: var(--scrollbar-compensation, 0px);
+}
+

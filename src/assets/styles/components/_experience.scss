@@ -1,0 +1,81 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "../functions" as *;
+
+.experience {
+	&__list {
+		display: grid;
+		list-style: none;
+		margin: vc(48) 0 0;
+		padding: 0;
+		gap: vc(40);
+	}
+
+	&__item {
+		display: grid;
+		border-top: 1px solid $color-line;
+		padding-top: vc(28);
+		gap: vc(16);
+
+		@include desktop {
+			grid-template-columns: vc(280) 1fr;
+			gap: vc(48);
+		}
+	}
+
+	&__role {
+		margin: 0 0 vc(8);
+		font-weight: 700;
+		font-size: vc(22);
+		letter-spacing: -0.02em;
+		color: $color-ink;
+	}
+
+	&__company {
+		margin: 0 0 vc(6);
+		font-weight: 700;
+		font-size: vc(15);
+		text-shadow: 0 0 vc(14) rgb(255 122 24 / 30%);
+		color: $color-accent-bright;
+	}
+
+	&__period {
+		margin: 0;
+		font-size: vc(13);
+		color: $color-muted;
+	}
+
+	&__summary {
+		margin: 0 0 vc(16);
+		font-size: vc(16);
+		line-height: calc(26 / 16);
+		color: $color-ink-soft;
+	}
+
+	&__points {
+		display: grid;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: vc(10);
+	}
+
+	&__point {
+		position: relative;
+		padding-left: vc(18);
+		font-size: vc(15);
+		line-height: calc(24 / 15);
+		color: $color-ink-soft;
+
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: vc(9);
+			border-radius: 50%;
+			width: vc(6);
+			height: vc(6);
+			background: $color-accent;
+		}
+	}
+}

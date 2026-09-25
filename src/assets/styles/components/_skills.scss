@@ -1,0 +1,53 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "../functions" as *;
+
+.skills {
+	&__groups {
+		display: grid;
+		margin-top: vc(48);
+		gap: vc(32);
+
+		@include desktop {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: vc(40);
+		}
+	}
+
+	&__group-title {
+		margin: 0 0 vc(14);
+		font-weight: 700;
+		font-size: vc(15);
+		letter-spacing: -0.01em;
+		color: $color-ink;
+	}
+
+	&__tags {
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: vc(8);
+	}
+
+	&__tag {
+		border: 1px solid rgb(196 77 255 / 28%);
+		border-radius: vc(999);
+		padding: vc(8) vc(12);
+		font-weight: 500;
+		font-size: vc(13);
+		color: $color-ink-soft;
+		background: rgb(18 8 31 / 75%);
+		transition:
+			border-color $duration-fast $easing-out,
+			color $duration-fast $easing-out,
+			box-shadow $duration-fast $easing-out;
+
+		&:hover {
+			border-color: $color-accent;
+			box-shadow: 0 0 vc(16) rgb(255 122 24 / 28%);
+			color: $color-ink;
+		}
+	}
+}

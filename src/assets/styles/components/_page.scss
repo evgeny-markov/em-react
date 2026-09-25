@@ -1,0 +1,65 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "../functions" as *;
+
+.page {
+	position: relative;
+	overflow-x: clip;
+	color: $color-ink;
+	background: $color-bg;
+
+	&__main {
+		position: relative;
+		z-index: 1;
+	}
+
+	&__section {
+		position: relative;
+		padding: vc(72) vc(20);
+
+		@include desktop {
+			padding: vc(120) vc(80);
+		}
+	}
+
+	&__container {
+		width: min(100%, vc(1120));
+		margin-inline: auto;
+	}
+
+	&__eyebrow {
+		margin: 0 0 vc(16);
+		font-weight: 700;
+		font-size: vc(13);
+		letter-spacing: 0.18em;
+		text-shadow: 0 0 vc(18) rgb(255 122 24 / 35%);
+		text-transform: uppercase;
+		color: $color-accent-bright;
+	}
+
+	&__title {
+		margin: 0 0 vc(20);
+		font-weight: 800;
+		font-size: vc(32);
+		line-height: 1.12;
+		letter-spacing: -0.03em;
+		color: $color-ink;
+
+		@include desktop {
+			font-size: vc(48);
+		}
+	}
+
+	&__lead {
+		margin: 0;
+		max-width: vc(640);
+		font-size: vc(16);
+		line-height: calc(26 / 16);
+		color: $color-ink-soft;
+
+		@include desktop {
+			font-size: vc(18);
+			line-height: calc(30 / 18);
+		}
+	}
+}
