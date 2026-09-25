@@ -52,3 +52,12 @@ dist/
     ├── index-….css
     └── index-….js
 ```
+
+## GitHub Pages
+
+После пуша в `main` сайт собирается и публикуется Actions-воркфлоу.
+
+1. В репозитории: **Settings → Pages → Source → GitHub Actions**
+2. Дождись успешного workflow **Deploy to GitHub Pages**
+
+Сайт: [https://evgeny-markov.github.io/em-react/](https://evgeny-markov.github.io/em-react/)

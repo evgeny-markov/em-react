@@ -6,11 +6,13 @@ import { defineConfig } from 'vite'
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url))
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  // GitHub Pages: https://evgeny-markov.github.io/em-react/
+  base: mode === 'production' ? '/em-react/' : '/',
   plugins: [react()],
   resolve: {
     alias: {
       '@': path.resolve(rootDir, 'src'),
     },
   },
-})
+}))
