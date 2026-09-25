@@ -64,7 +64,7 @@ function PageLoader({ onComplete }: PageLoaderProps) {
     <div className="loader" ref={rootRef} aria-live="polite" aria-busy="true">
       <div className="loader__inner">
         <div className="loader__meta">
-          <p className="loader__label">Entering orbit</p>
+          <p className="loader__label">Выход на орбиту</p>
           <p className="loader__percent">{percent}%</p>
           <div className="loader__bar" aria-hidden="true">
             <div className="loader__bar-fill" ref={barRef} />
