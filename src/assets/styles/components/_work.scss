@@ -8,66 +8,140 @@
 		list-style: none;
 		margin: vc(48) 0 0;
 		padding: 0;
-		gap: 0;
-	}
+		gap: vc(14);
 
-	&__item {
-		border-top: 1px solid $color-line;
-		transition: border-color $duration-fast $easing-out;
+		@include desktop {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: vc(20);
+		}
 
-		&:last-child {
-			border-bottom: 1px solid $color-line;
+		@include desktop-xl {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
 	}
 
-	&__link {
-		display: grid;
-		padding: vc(22) 0;
-		transition: color $duration-fast $easing-out;
-		gap: vc(8);
+	&__item {
+		min-height: 100%;
+	}
 
-		&:hover {
-			color: $color-accent-bright;
+	&__link {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		overflow: hidden;
+		border: 1px solid $color-line;
+		border-radius: vc(22);
+		padding: vc(22) vc(20);
+		min-height: vc(148);
+		box-shadow: 0 0 0 1px rgb(196 77 255 / 10%);
+		background:
+			radial-gradient(ellipse 90% 80% at 0% 0%, rgb(196 77 255 / 20%), transparent 55%),
+			radial-gradient(ellipse 80% 70% at 100% 100%, rgb(255 122 24 / 14%), transparent 52%),
+			radial-gradient(circle at 80% 20%, rgb(45 226 230 / 8%), transparent 40%),
+			$color-surface;
+		isolation: isolate;
+		transition:
+			border-color $duration-fast $easing-out,
+			box-shadow $duration-base $easing-out,
+			transform $duration-base $easing-out;
+		gap: vc(28);
+
+		&::before {
+			content: "";
+			position: absolute;
+			z-index: -1;
+			background:
+				radial-gradient(circle at 20% 30%, rgb(255 122 24 / 0%), transparent 45%),
+				radial-gradient(circle at 85% 75%, rgb(196 77 255 / 0%), transparent 40%);
+			opacity: 0;
+			transition: opacity $duration-base $easing-out;
+			inset: 0;
+		}
+
+		&:hover,
+		&:focus-visible {
+			border-color: rgb(255 122 24 / 45%);
+			box-shadow:
+				0 0 vc(28) rgb(255 122 24 / 18%),
+				0 0 vc(48) rgb(196 77 255 / 14%);
+			transform: translateY(vc(-4));
+
+			&::before {
+				background:
+					radial-gradient(circle at 20% 30%, rgb(255 122 24 / 16%), transparent 45%),
+					radial-gradient(circle at 85% 75%, rgb(196 77 255 / 18%), transparent 40%);
+				opacity: 1;
+			}
 
 			.work__arrow {
 				color: $color-secondary;
-				transform: translateX(vc(6));
+				transform: translateX(vc(4));
+			}
+
+			.work__name {
+				color: $color-accent-bright;
 			}
 		}
 
 		@include desktop {
-			align-items: baseline;
-			grid-template-columns: 1fr auto;
-			padding: vc(28) 0;
-			gap: vc(24);
+			border-radius: vc(26);
+			padding: vc(28) vc(26);
+			min-height: vc(176);
+			gap: vc(36);
 		}
+	}
+
+	&__body {
+		display: grid;
+		gap: vc(8);
 	}
 
 	&__name {
 		margin: 0;
-		font-weight: 600;
+		font-weight: 700;
 		font-size: vc(20);
 		letter-spacing: -0.02em;
+		transition: color $duration-fast $easing-out;
 
 		@include desktop {
-			font-size: vc(28);
+			font-size: vc(24);
 		}
 	}
 
 	&__meta {
 		margin: 0;
-		font-size: vc(14);
+		font-size: vc(13);
+		line-height: calc(20 / 13);
 		color: $color-muted;
+
+		@include desktop {
+			font-size: vc(14);
+			line-height: calc(22 / 14);
+		}
+	}
+
+	&__footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: vc(12);
+	}
+
+	&__orbit {
+		border: 1px solid rgb(45 226 230 / 28%);
+		border-radius: 50%;
+		width: vc(10);
+		height: vc(10);
+		box-shadow: 0 0 vc(10) rgb(45 226 230 / 45%);
+		background: $color-cyan;
 	}
 
 	&__arrow {
-		display: none;
-		font-size: vc(22);
+		font-size: vc(20);
 		color: $color-accent;
-		transition: transform $duration-fast $easing-out;
-
-		@include desktop {
-			display: block;
-		}
+		transition:
+			color $duration-fast $easing-out,
+			transform $duration-fast $easing-out;
 	}
 }

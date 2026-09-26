@@ -90,13 +90,7 @@ function SiteNav({ ready }: SiteNavProps) {
   )
 
   useEffect(() => {
-    const scrollbarWidth = Math.max(0, window.innerWidth - document.documentElement.clientWidth)
-
     document.body.classList.toggle('is-nav-open', isOpen)
-    document.documentElement.style.setProperty(
-      '--scrollbar-compensation',
-      isOpen ? `${scrollbarWidth}px` : '0px',
-    )
 
     if (!isOpen) {
       return
@@ -113,7 +107,6 @@ function SiteNav({ ready }: SiteNavProps) {
     return () => {
       window.removeEventListener('keydown', onKeyDown)
       document.body.classList.remove('is-nav-open')
-      document.documentElement.style.setProperty('--scrollbar-compensation', '0px')
     }
   }, [isOpen])
 

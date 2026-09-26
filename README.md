@@ -1,6 +1,6 @@
 # Личный сайт
 
-Одностраничный лендинг-портфолио frontend-разработчика: React + Vite + TypeScript + SCSS, анимации GSAP и canvas-фон «полёт в космосе».
+Одностраничный лендинг-портфолио frontend-разработчика: **React + Vite + TypeScript + SCSS**, анимации **GSAP** и canvas-фон «полёт в космосе».
 
 ## Стек
 
@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-Сайт: [http://127.0.0.1:5173/](http://127.0.0.1:5173/)
+Сайт откроется на `http://127.0.0.1:5173/`.
 
 ### Полезные команды
 
@@ -55,9 +55,4 @@ dist/
 
 ## GitHub Pages
 
-После пуша в `main` сайт собирается и публикуется Actions-воркфлоу.
-
-1. В репозитории: **Settings → Pages → Source → GitHub Actions**
-2. Дождись успешного workflow **Deploy to GitHub Pages**
-
-Сайт: [https://evgeny-markov.github.io/em-react/](https://evgeny-markov.github.io/em-react/)
+Сайт: https://evgeny-markov.github.io/em-react/

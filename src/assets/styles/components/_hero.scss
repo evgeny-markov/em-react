@@ -34,9 +34,9 @@
 	&__headline,
 	&__text,
 	&__cta,
-	&__compass {
-		visibility: hidden;
+	&__beacon {
 		opacity: 0;
+		visibility: hidden;
 	}
 
 	&__signal {
@@ -169,14 +169,14 @@
 		}
 	}
 
-	&__compass {
+	&__beacon {
 		position: absolute;
 		left: vc(20);
 		bottom: vc(28);
 		z-index: 1;
 		display: none;
-		width: vc(72);
-		height: vc(72);
+		width: vc(96);
+		height: vc(96);
 
 		@include desktop {
 			left: vc(80);
@@ -185,117 +185,64 @@
 		}
 	}
 
-	&__compass-ring {
+	&__beacon-ring {
 		position: absolute;
-		border: 1px solid rgb(247 244 255 / 22%);
 		border-radius: 50%;
+		pointer-events: none;
+
+		&--outer {
+			border: 1px solid rgb(247 244 255 / 18%);
+			box-shadow:
+				inset 0 0 0 1px rgb(45 226 230 / 10%),
+				0 0 vc(24) rgb(4 1 10 / 45%);
+			background: rgb(4 1 10 / 35%);
+			inset: 0;
+		}
+
+		&--mid {
+			border: 1px dashed rgb(196 77 255 / 42%);
+			inset: vc(12);
+		}
+
+		&--inner {
+			border: 1px solid rgb(255 122 24 / 35%);
+			inset: vc(26);
+		}
+	}
+
+	&__beacon-core {
+		position: relative;
+		z-index: 2;
+		border-radius: 50%;
+		width: vc(14);
+		height: vc(14);
 		box-shadow:
-			inset 0 0 0 1px rgb(255 122 24 / 12%),
-			0 0 vc(20) rgb(4 1 10 / 40%);
-		background: rgb(4 1 10 / 45%);
+			0 0 vc(16) rgb(255 122 24 / 65%),
+			0 0 vc(28) rgb(196 77 255 / 25%);
+		background: radial-gradient(circle at 35% 30%, $color-accent-bright, $color-accent 55%, $color-secondary);
+	}
+
+	&__beacon-sat {
+		position: absolute;
+		z-index: 3;
+		transform-origin: center center;
+		will-change: transform;
+		pointer-events: none;
 		inset: 0;
 	}
 
-	&__compass-label {
-		position: absolute;
-		font-weight: 700;
-		font-size: vc(9);
-		letter-spacing: 0.08em;
-		color: rgb(247 244 255 / 55%);
-
-		&--n {
-			left: 50%;
-			top: vc(6);
-			color: $color-accent-bright;
-			transform: translateX(-50%);
-		}
-
-		&--e {
-			right: vc(8);
-			top: 50%;
-			transform: translateY(-50%);
-		}
-
-		&--s {
-			left: 50%;
-			bottom: vc(6);
-			transform: translateX(-50%);
-		}
-
-		&--w {
-			left: vc(7);
-			top: 50%;
-			transform: translateY(-50%);
-		}
-	}
-
-	&__compass-tick {
+	&__beacon-sat-body {
 		position: absolute;
 		left: 50%;
-		top: 50%;
-		width: 1px;
-		height: vc(6);
-		background: rgb(247 244 255 / 28%);
-		transform-origin: center vc(30);
-
-		&--ne {
-			transform: translate(-50%, -50%) rotate(45deg);
-		}
-
-		&--se {
-			transform: translate(-50%, -50%) rotate(135deg);
-		}
-
-		&--sw {
-			transform: translate(-50%, -50%) rotate(225deg);
-		}
-
-		&--nw {
-			transform: translate(-50%, -50%) rotate(315deg);
-		}
-	}
-
-	&__compass-needle {
-		position: relative;
-		z-index: 1;
-		width: vc(10);
-		height: vc(48);
-		transform-origin: center center;
-		will-change: transform;
-	}
-
-	&__compass-needle-north,
-	&__compass-needle-south {
-		position: absolute;
-		left: 50%;
-		border-style: solid;
-		width: 0;
-		height: 0;
-		transform: translateX(-50%);
-	}
-
-	&__compass-needle-north {
-		top: 0;
-		border-width: 0 vc(5) vc(22);
-		border-color: transparent transparent $color-accent;
-		filter: drop-shadow(0 0 vc(6) rgb(255 122 24 / 55%));
-	}
-
-	&__compass-needle-south {
-		bottom: 0;
-		border-width: vc(22) vc(5) 0;
-		border-color: rgb(247 244 255 / 45%) transparent transparent;
-	}
-
-	&__compass-hub {
-		position: absolute;
-		z-index: 2;
-		border: 1px solid rgb(255 179 71 / 55%);
+		top: vc(-3);
 		border-radius: 50%;
 		width: vc(8);
 		height: vc(8);
-		box-shadow: 0 0 vc(10) rgb(255 122 24 / 60%);
-		background: $color-accent-bright;
+		box-shadow:
+			0 0 vc(10) rgb(45 226 230 / 75%),
+			0 0 vc(18) rgb(45 226 230 / 35%);
+		background: $color-cyan;
+		transform: translateX(-50%);
 	}
 
 	@include desktop {

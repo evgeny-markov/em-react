@@ -10,9 +10,33 @@ import Skills from '@/components/Skills'
 import SpaceBackground from '@/components/SpaceBackground'
 import Work from '@/components/Work'
 
+function scrollToTop() {
+  const root = document.documentElement
+  const previous = root.style.scrollBehavior
+  root.style.scrollBehavior = 'auto'
+  window.scrollTo(0, 0)
+  root.style.scrollBehavior = previous
+}
+
 function App() {
   const [ready, setReady] = useState(false)
   const [showLoader, setShowLoader] = useState(true)
+
+  useEffect(() => {
+    scrollToTop()
+
+    const onPageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) {
+        scrollToTop()
+      }
+    }
+
+    window.addEventListener('pageshow', onPageShow)
+
+    return () => {
+      window.removeEventListener('pageshow', onPageShow)
+    }
+  }, [])
 
   useEffect(() => {
     document.body.classList.toggle('is-loading', showLoader)
@@ -23,6 +47,7 @@ function App() {
   }, [showLoader])
 
   const handleLoaderComplete = () => {
+    scrollToTop()
     setShowLoader(false)
     setReady(true)
   }

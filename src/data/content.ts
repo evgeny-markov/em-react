@@ -4,7 +4,7 @@ export const site = {
   role: 'Frontend-разработчик · Middle',
   focus: 'Vue.js / Nuxt · TypeScript · интерфейсы и анимации',
   availability: 'Полная занятость · удалённо',
-  email: 'mo190387mei@gmail.com',
+  telegramUrl: 'https://t.me/evgeniy_markov',
   hhUrl: 'https://hh.ru/resume/e952357aff068bca3e0039ed1f4b575a7a6c65',
   heroLead:
     'Собираю понятные интерфейсы: от промо и лендингов до SPA/SSR, кабинетов и админок. 6+ лет коммерческого опыта.',
@@ -63,6 +63,31 @@ export const experience = [
 
 export const projects = [
   {
+    name: 'MiraiTech',
+    meta: 'Корпоративный сайт',
+    href: 'https://miraitech.co',
+  },
+  {
+    name: 'PNB Agency',
+    meta: 'Сайт агентства',
+    href: 'https://pnb.agency',
+  },
+  {
+    name: 'Adness',
+    meta: 'Маркетинговый сайт · ad tech',
+    href: 'https://adness.co',
+  },
+  {
+    name: 'Adxad',
+    meta: 'Маркетинговый сайт · ad tech',
+    href: 'https://adxad.com',
+  },
+  {
+    name: 'Autopodpiska',
+    meta: 'Промо-лендинг',
+    href: 'https://autopodpiska.ru',
+  },
+  {
     name: 'Этика ИИ',
     meta: 'Портал Альянса · ethics.a-ai.ru',
     href: 'https://ethics.a-ai.ru',
@@ -82,31 +107,6 @@ export const projects = [
     meta: 'Портал Альянса · mck.a-ai.ru',
     href: 'https://mck.a-ai.ru',
   },
-  {
-    name: 'Adness',
-    meta: 'Маркетинговый сайт · ad tech',
-    href: 'https://adness.co',
-  },
-  {
-    name: 'Adxad',
-    meta: 'Маркетинговый сайт · ad tech',
-    href: 'https://adxad.com',
-  },
-  {
-    name: 'Autopodpiska',
-    meta: 'Промо-лендинг',
-    href: 'https://autopodpiska.ru',
-  },
-  {
-    name: 'MiraiTech',
-    meta: 'Корпоративный сайт',
-    href: 'https://miraitech.co',
-  },
-  {
-    name: 'PNB Agency',
-    meta: 'Сайт агентства',
-    href: 'https://pnb.agency',
-  },
 ] as const;
 
 export const skillGroups = [
@@ -120,7 +120,7 @@ export const skillGroups = [
   },
   {
     title: 'UI & motion',
-    items: ['GSAP', 'Swiper', 'Quasar', 'Chart.js', 'Vue Flow', 'D3.js', 'Responsive'],
+    items: ['GSAP', 'Swiper', 'Quasar', 'Chart.js', 'Vue Flow', 'Responsive'],
   },
   {
     title: 'Quality',

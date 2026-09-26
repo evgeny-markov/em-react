@@ -34,6 +34,11 @@ a {
 	color: inherit;
 }
 
+::selection {
+	color: #1a0a05;
+	background-color: $color-accent-bright;
+}
+
 button {
 	font: inherit;
 	cursor: pointer;

@@ -9,12 +9,12 @@ type HeroProps = {
 }
 
 const REVEAL =
-  '.hero__signal, .hero__brand-line, .hero__rule, .hero__headline, .hero__text, .hero__cta, .hero__compass'
+  '.hero__signal, .hero__brand-line, .hero__rule, .hero__headline, .hero__text, .hero__cta, .hero__beacon'
 
 function Hero({ ready }: HeroProps) {
   const rootRef = useRef<HTMLElement>(null)
-  const compassRef = useRef<HTMLDivElement>(null)
-  const needleRef = useRef<HTMLDivElement>(null)
+  const beaconRef = useRef<HTMLDivElement>(null)
+  const satRef = useRef<HTMLSpanElement>(null)
 
   useGSAP(
     () => {
@@ -56,7 +56,7 @@ function Hero({ ready }: HeroProps) {
             '-=0.35',
           )
           .fromTo(
-            '.hero__compass',
+            '.hero__beacon',
             { autoAlpha: 0, scale: 0.85 },
             { autoAlpha: 1, scale: 1, duration: 0.65 },
             '-=0.25',
@@ -66,6 +66,29 @@ function Hero({ ready }: HeroProps) {
           scale: 1.35,
           opacity: 0.35,
           duration: 1.1,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+        })
+
+        gsap.to('.hero__beacon-ring--mid', {
+          rotation: 360,
+          duration: 28,
+          ease: 'none',
+          repeat: -1,
+        })
+
+        gsap.to('.hero__beacon-ring--inner', {
+          rotation: -360,
+          duration: 18,
+          ease: 'none',
+          repeat: -1,
+        })
+
+        gsap.to('.hero__beacon-core', {
+          boxShadow: '0 0 22px rgba(255, 122, 24, 0.85), 0 0 40px rgba(196, 77, 255, 0.35)',
+          scale: 1.12,
+          duration: 1.6,
           ease: 'sine.inOut',
           repeat: -1,
           yoyo: true,
@@ -82,21 +105,21 @@ function Hero({ ready }: HeroProps) {
       return
     }
 
-    const compass = compassRef.current
-    const needle = needleRef.current
+    const beacon = beaconRef.current
+    const sat = satRef.current
 
-    if (!compass || !needle) {
+    if (!beacon || !sat) {
       return
     }
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const setRotation = gsap.quickTo(needle, 'rotation', {
-      duration: reducedMotion ? 0 : 0.4,
+    const setRotation = gsap.quickTo(sat, 'rotation', {
+      duration: reducedMotion ? 0 : 0.45,
       ease: 'power3.out',
     })
 
     const onPointerMove = (event: PointerEvent) => {
-      const rect = compass.getBoundingClientRect()
+      const rect = beacon.getBoundingClientRect()
       const cx = rect.left + rect.width / 2
       const cy = rect.top + rect.height / 2
       const angle = (Math.atan2(event.clientY - cy, event.clientX - cx) * 180) / Math.PI + 90
@@ -140,22 +163,14 @@ function Hero({ ready }: HeroProps) {
         </div>
       </div>
 
-      <div className="hero__compass" ref={compassRef} aria-hidden="true">
-        <div className="hero__compass-ring">
-          <span className="hero__compass-label hero__compass-label--n">N</span>
-          <span className="hero__compass-label hero__compass-label--e">E</span>
-          <span className="hero__compass-label hero__compass-label--s">S</span>
-          <span className="hero__compass-label hero__compass-label--w">W</span>
-          <span className="hero__compass-tick hero__compass-tick--ne" />
-          <span className="hero__compass-tick hero__compass-tick--se" />
-          <span className="hero__compass-tick hero__compass-tick--sw" />
-          <span className="hero__compass-tick hero__compass-tick--nw" />
-        </div>
-        <div className="hero__compass-needle" ref={needleRef}>
-          <span className="hero__compass-needle-north" />
-          <span className="hero__compass-needle-south" />
-        </div>
-        <span className="hero__compass-hub" />
+      <div className="hero__beacon" ref={beaconRef} aria-hidden="true">
+        <span className="hero__beacon-ring hero__beacon-ring--outer" />
+        <span className="hero__beacon-ring hero__beacon-ring--mid" />
+        <span className="hero__beacon-ring hero__beacon-ring--inner" />
+        <span className="hero__beacon-core" />
+        <span className="hero__beacon-sat" ref={satRef}>
+          <span className="hero__beacon-sat-body" />
+        </span>
       </div>
     </section>
   )

@@ -27,32 +27,17 @@ function Work() {
           },
         })
 
-        gsap.utils.toArray<HTMLElement>('.work__item').forEach((item) => {
-          gsap.from(item, {
-            y: 40,
-            autoAlpha: 0,
-            duration: 0.75,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: item,
-              start: 'top 88%',
-            },
-          })
-
-          gsap.fromTo(
-            item,
-            { borderColor: 'rgba(247, 244, 255, 0.08)' },
-            {
-              borderColor: 'rgba(255, 122, 24, 0.45)',
-              ease: 'none',
-              scrollTrigger: {
-                trigger: item,
-                start: 'top 70%',
-                end: 'top 35%',
-                scrub: true,
-              },
-            },
-          )
+        gsap.from('.work__item', {
+          y: 48,
+          autoAlpha: 0,
+          scale: 0.96,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.work__list',
+            start: 'top 82%',
+          },
         })
       })
 
@@ -66,11 +51,7 @@ function Work() {
       <div className="page__container">
         <div className="work__head">
           <p className="page__eyebrow">Проекты</p>
-          <h2 className="page__title">Публичные релизы</h2>
-          <p className="page__lead">
-            Открытые маркетинговые и портальные релизы: AI/EdTech, ad tech, промо и корпоративные сайты.
-            NDA и закрытые админки не раскрываю.
-          </p>
+          <h2 className="page__title">Публичные проекты из продакшена</h2>
         </div>
 
         <ul className="work__list">
@@ -82,13 +63,16 @@ function Work() {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                <div>
+                <div className="work__body">
                   <p className="work__name">{project.name}</p>
                   <p className="work__meta">{project.meta}</p>
                 </div>
-                <span className="work__arrow" aria-hidden="true">
-                  →
-                </span>
+                <div className="work__footer">
+                  <span className="work__orbit" aria-hidden="true" />
+                  <span className="work__arrow" aria-hidden="true">
+                    →
+                  </span>
+                </div>
               </a>
             </li>
           ))}

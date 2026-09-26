@@ -69,13 +69,16 @@ function Contact() {
             </p>
           </div>
           <div className="contact__actions">
-            {site.email ? (
-              <a className="contact__link" href={`mailto:${site.email}`}>
-                Написать на почту
-              </a>
-            ) : null}
             <a
-              className={`contact__link${site.email ? ' contact__link--ghost' : ''}`}
+              className="contact__link"
+              href={site.telegramUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Написать в Telegram
+            </a>
+            <a
+              className="contact__link contact__link--ghost"
               href={site.hhUrl}
               target="_blank"
               rel="noreferrer noopener"
@@ -84,11 +87,7 @@ function Contact() {
             </a>
           </div>
         </div>
-        <p className="contact__note">
-          {site.email
-            ? `${site.availability} · ${site.email}`
-            : `${site.availability}. Email можно добавить в src/data/content.ts → site.email.`}
-        </p>
+        <p className="contact__note">{site.availability}</p>
       </div>
     </section>
   )
