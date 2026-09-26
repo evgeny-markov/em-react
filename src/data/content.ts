@@ -2,7 +2,6 @@ export const site = {
   name: 'Евгений Марков',
   brandShort: 'ЕМ',
   role: 'Frontend-разработчик · Middle',
-  focus: 'Vue.js / Nuxt · TypeScript · интерфейсы и анимации',
   availability: 'Полная занятость · удалённо',
   telegramUrl: 'https://t.me/evgeniy_markov',
   hhUrl: 'https://hh.ru/resume/e952357aff068bca3e0039ed1f4b575a7a6c65',

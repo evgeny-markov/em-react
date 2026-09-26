@@ -1,34 +1,25 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useRef } from 'react'
 
 import { site } from '@/data/content'
-
-gsap.registerPlugin(ScrollTrigger)
+import { warpReveal, withMotion } from '@/lib/motion'
 
 function About() {
   const rootRef = useRef<HTMLElement>(null)
 
   useGSAP(
-    () => {
-      const mm = gsap.matchMedia()
-
-      mm.add('(prefers-reduced-motion: no-preference)', () => {
-        gsap.from('.about__reveal', {
+    () =>
+      withMotion(() => {
+        warpReveal('.about__reveal', {
+          trigger: rootRef.current,
+          start: 'top 78%',
           y: 72,
-          autoAlpha: 0,
+          blur: 14,
+          duration: 1.15,
+          stagger: 0.16,
           rotateX: 28,
           transformOrigin: '50% 100%',
-          filter: 'blur(14px)',
-          duration: 1.15,
-          ease: 'power3.out',
-          stagger: 0.16,
-          scrollTrigger: {
-            trigger: rootRef.current,
-            start: 'top 78%',
-          },
-          clearProps: 'filter',
         })
 
         gsap.from('.about__stat', {
@@ -40,11 +31,11 @@ function About() {
           duration: 0.95,
           ease: 'back.out(1.55)',
           stagger: 0.12,
+          clearProps: 'filter',
           scrollTrigger: {
             trigger: '.about__stats',
             start: 'top 82%',
           },
-          clearProps: 'filter',
         })
 
         gsap.utils.toArray<HTMLElement>('.about__stat-value').forEach((el) => {
@@ -94,10 +85,7 @@ function About() {
           ease: 'none',
           repeat: -1,
         })
-      })
-
-      return () => mm.revert()
-    },
+      }),
     { scope: rootRef },
   )
 

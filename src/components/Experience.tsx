@@ -1,32 +1,21 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useRef } from 'react'
 
 import { experience } from '@/data/content'
-
-gsap.registerPlugin(ScrollTrigger)
+import { warpReveal, withMotion } from '@/lib/motion'
 
 function Experience() {
   const rootRef = useRef<HTMLElement>(null)
 
   useGSAP(
-    () => {
-      const mm = gsap.matchMedia()
-
-      mm.add('(prefers-reduced-motion: no-preference)', () => {
-        gsap.from('.experience__head > *', {
+    () =>
+      withMotion(() => {
+        warpReveal('.experience__head > *', {
+          trigger: rootRef.current,
           y: 48,
-          autoAlpha: 0,
-          filter: 'blur(12px)',
           duration: 1,
           stagger: 0.12,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: rootRef.current,
-            start: 'top 75%',
-          },
-          clearProps: 'filter',
         })
 
         gsap.utils.toArray<HTMLElement>('.experience__item').forEach((item, index) => {
@@ -42,11 +31,11 @@ function Experience() {
             autoAlpha: 0,
             duration: 1.05,
             ease: 'power3.out',
+            clearProps: 'filter',
             scrollTrigger: {
               trigger: item,
               start: 'top 84%',
             },
-            clearProps: 'filter',
           })
 
           gsap.from(item.querySelectorAll('.experience__point'), {
@@ -77,10 +66,7 @@ function Experience() {
             },
           )
         })
-      })
-
-      return () => mm.revert()
-    },
+      }),
     { scope: rootRef },
   )
 

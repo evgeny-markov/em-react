@@ -1,32 +1,18 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useRef } from 'react'
 
 import { skillGroups } from '@/data/content'
-
-gsap.registerPlugin(ScrollTrigger)
+import { warpReveal, withMotion } from '@/lib/motion'
 
 function Skills() {
   const rootRef = useRef<HTMLElement>(null)
 
   useGSAP(
-    () => {
-      const mm = gsap.matchMedia()
-
-      mm.add('(prefers-reduced-motion: no-preference)', () => {
-        gsap.from('.skills__head > *', {
-          y: 44,
-          autoAlpha: 0,
-          filter: 'blur(12px)',
-          duration: 0.95,
-          stagger: 0.1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: rootRef.current,
-            start: 'top 75%',
-          },
-          clearProps: 'filter',
+    () =>
+      withMotion(() => {
+        warpReveal('.skills__head > *', {
+          trigger: rootRef.current,
         })
 
         gsap.utils.toArray<HTMLElement>('.skills__group').forEach((group, groupIndex) => {
@@ -42,9 +28,7 @@ function Skills() {
             },
           })
 
-          const tags = group.querySelectorAll('.skills__tag')
-
-          gsap.from(tags, {
+          gsap.from(group.querySelectorAll('.skills__tag'), {
             x: () => gsap.utils.random(-48, 48),
             y: () => gsap.utils.random(36, 72),
             rotate: () => gsap.utils.random(-18, 18),
@@ -57,17 +41,14 @@ function Skills() {
               from: groupIndex % 2 === 0 ? 'start' : 'center',
             },
             ease: 'back.out(1.5)',
+            clearProps: 'filter',
             scrollTrigger: {
               trigger: group,
               start: 'top 80%',
             },
-            clearProps: 'filter',
           })
         })
-      })
-
-      return () => mm.revert()
-    },
+      }),
     { scope: rootRef },
   )
 

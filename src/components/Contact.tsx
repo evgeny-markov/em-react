@@ -1,57 +1,39 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useRef } from 'react'
 
 import { site } from '@/data/content'
-
-gsap.registerPlugin(ScrollTrigger)
+import { dockIn, fadeUp, withMotion } from '@/lib/motion'
 
 function Contact() {
   const rootRef = useRef<HTMLElement>(null)
 
   useGSAP(
-    () => {
-      const mm = gsap.matchMedia()
-
-      mm.add('(prefers-reduced-motion: no-preference)', () => {
-        gsap.from('.contact__panel', {
+    () =>
+      withMotion(() => {
+        dockIn('.contact__panel', {
+          trigger: rootRef.current,
           y: 80,
-          autoAlpha: 0,
+          blur: 16,
           scale: 0.88,
           rotateX: 18,
-          filter: 'blur(16px)',
-          transformOrigin: '50% 100%',
           duration: 1.15,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: rootRef.current,
-            start: 'top 82%',
-          },
-          clearProps: 'filter',
+          stagger: 0,
         })
 
-        gsap.from('.contact__panel > *', {
+        fadeUp('.contact__panel > *', {
+          trigger: '.contact__panel',
+          start: 'top 78%',
           y: 28,
-          autoAlpha: 0,
-          duration: 0.8,
           stagger: 0.14,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.contact__panel',
-            start: 'top 78%',
-          },
+          duration: 0.8,
         })
 
-        gsap.from('.contact__note', {
+        fadeUp('.contact__note', {
+          trigger: '.contact__note',
+          start: 'top 92%',
           y: 20,
-          autoAlpha: 0,
           duration: 0.7,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.contact__note',
-            start: 'top 92%',
-          },
         })
 
         gsap.to('.contact__panel', {
@@ -64,10 +46,7 @@ function Contact() {
             scrub: true,
           },
         })
-      })
-
-      return () => mm.revert()
-    },
+      }),
     { scope: rootRef },
   )
 

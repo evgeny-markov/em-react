@@ -48,10 +48,6 @@ button {
 	--width-base: 360;
 	--width-current: 100vmin;
 	--width-multiplier: calc(var(--width-current) / var(--width-base));
-	--color-bg: #{$color-bg};
-	--color-ink: #{$color-ink};
-	--color-accent: #{$color-accent};
-	--color-surface: #{$color-surface};
 
 	@include desktop {
 		--width-base: 1440;
