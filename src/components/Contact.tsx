@@ -16,26 +16,41 @@ function Contact() {
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         gsap.from('.contact__panel', {
-          y: 64,
+          y: 80,
           autoAlpha: 0,
-          scale: 0.94,
-          duration: 1.05,
+          scale: 0.88,
+          rotateX: 18,
+          filter: 'blur(16px)',
+          transformOrigin: '50% 100%',
+          duration: 1.15,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: rootRef.current,
             start: 'top 82%',
           },
+          clearProps: 'filter',
         })
 
         gsap.from('.contact__panel > *', {
-          y: 24,
+          y: 28,
           autoAlpha: 0,
-          duration: 0.75,
-          stagger: 0.12,
+          duration: 0.8,
+          stagger: 0.14,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: '.contact__panel',
             start: 'top 78%',
+          },
+        })
+
+        gsap.from('.contact__note', {
+          y: 20,
+          autoAlpha: 0,
+          duration: 0.7,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.contact__note',
+            start: 'top 92%',
           },
         })
 

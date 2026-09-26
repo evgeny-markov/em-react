@@ -16,29 +16,35 @@ function About() {
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         gsap.from('.about__reveal', {
-          y: 56,
+          y: 72,
           autoAlpha: 0,
-          rotateX: 12,
-          duration: 1,
+          rotateX: 28,
+          transformOrigin: '50% 100%',
+          filter: 'blur(14px)',
+          duration: 1.15,
           ease: 'power3.out',
-          stagger: 0.14,
+          stagger: 0.16,
           scrollTrigger: {
             trigger: rootRef.current,
             start: 'top 78%',
           },
+          clearProps: 'filter',
         })
 
         gsap.from('.about__stat', {
-          y: 40,
+          y: 56,
           autoAlpha: 0,
-          scale: 0.92,
-          duration: 0.85,
-          ease: 'back.out(1.4)',
-          stagger: 0.1,
+          scale: 0.78,
+          rotateY: -18,
+          filter: 'blur(10px)',
+          duration: 0.95,
+          ease: 'back.out(1.55)',
+          stagger: 0.12,
           scrollTrigger: {
             trigger: '.about__stats',
             start: 'top 82%',
           },
+          clearProps: 'filter',
         })
 
         gsap.utils.toArray<HTMLElement>('.about__stat-value').forEach((el) => {
@@ -54,7 +60,7 @@ function About() {
 
           gsap.to(counter, {
             value: numeric,
-            duration: 1.4,
+            duration: 1.55,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: el,
@@ -66,9 +72,25 @@ function About() {
           })
         })
 
+        gsap.fromTo(
+          '.about__orbit',
+          { scale: 0.86, autoAlpha: 0.35 },
+          {
+            scale: 1,
+            autoAlpha: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: rootRef.current,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2,
+            },
+          },
+        )
+
         gsap.to('.about__orbit', {
           rotate: 360,
-          duration: 40,
+          duration: 48,
           ease: 'none',
           repeat: -1,
         })

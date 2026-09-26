@@ -16,43 +16,66 @@ function Experience() {
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         gsap.from('.experience__head > *', {
-          y: 40,
+          y: 48,
           autoAlpha: 0,
-          duration: 0.9,
+          filter: 'blur(12px)',
+          duration: 1,
           stagger: 0.12,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: rootRef.current,
             start: 'top 75%',
           },
+          clearProps: 'filter',
         })
 
         gsap.utils.toArray<HTMLElement>('.experience__item').forEach((item, index) => {
-          const fromX = index % 2 === 0 ? -48 : 48
+          const fromLeft = index % 2 === 0
 
           gsap.from(item, {
-            x: fromX,
-            y: 36,
+            x: fromLeft ? -72 : 72,
+            y: 40,
+            rotateY: fromLeft ? 22 : -22,
+            transformPerspective: 1000,
+            transformOrigin: fromLeft ? '0% 50%' : '100% 50%',
+            filter: 'blur(12px)',
             autoAlpha: 0,
-            duration: 0.95,
+            duration: 1.05,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: item,
               start: 'top 84%',
             },
+            clearProps: 'filter',
           })
 
           gsap.from(item.querySelectorAll('.experience__point'), {
-            x: 16,
+            x: fromLeft ? -20 : 20,
             autoAlpha: 0,
             duration: 0.55,
-            stagger: 0.06,
+            stagger: 0.07,
             ease: 'power2.out',
+            delay: 0.12,
             scrollTrigger: {
               trigger: item,
               start: 'top 78%',
             },
           })
+
+          gsap.fromTo(
+            item,
+            { borderColor: 'rgba(247, 244, 255, 0.08)' },
+            {
+              borderColor: 'rgba(255, 179, 71, 0.35)',
+              ease: 'none',
+              scrollTrigger: {
+                trigger: item,
+                start: 'top 75%',
+                end: 'top 40%',
+                scrub: true,
+              },
+            },
+          )
         })
       })
 

@@ -16,6 +16,7 @@
 	&__section {
 		position: relative;
 		padding: vc(72) vc(20);
+		perspective: 1100px;
 
 		@include desktop {
 			padding: vc(120) vc(80);

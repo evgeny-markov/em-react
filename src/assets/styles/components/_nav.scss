@@ -38,43 +38,57 @@
 		}
 	}
 
-	&__burger {
+	&__eq {
 		position: relative;
 		z-index: 1;
-		display: block;
+		display: flex;
 		flex-shrink: 0;
+		align-items: flex-end;
+		justify-content: space-between;
 		border: 0;
 		padding: 0;
-		width: 24px;
+		width: 22px;
 		height: 18px;
 		background: transparent;
 		cursor: pointer;
+		gap: 3px;
 	}
 
-	&__burger-line {
-		position: absolute;
-		left: 0;
-		top: 50%;
+	&__eq-bar {
 		display: block;
-		margin-top: -1px;
-		width: 100%;
-		height: 2px;
+		flex: 1 1 auto;
+		border-radius: 1px;
+		height: 100%;
+		min-width: 3px;
+		box-shadow: 0 0 vc(8) rgb(255 122 24 / 0%);
 		background: $color-ink;
-		transform-origin: center;
+		transform: scaleY(0.35);
+		transform-origin: center bottom;
 		transition:
 			transform $duration-base $easing-out,
-			opacity $duration-fast $easing-out;
+			opacity $duration-base $easing-out,
+			background-color $duration-fast $easing-out,
+			box-shadow $duration-fast $easing-out;
+		animation: nav-eq-pulse 0.72s ease-in-out infinite alternate;
 
 		&:nth-child(1) {
-			transform: translateY(-8px);
+			animation-duration: 0.58s;
+			animation-delay: 0s;
 		}
 
 		&:nth-child(2) {
-			transform: translateY(0);
+			animation-duration: 0.76s;
+			animation-delay: 0.12s;
 		}
 
 		&:nth-child(3) {
-			transform: translateY(8px);
+			animation-duration: 0.64s;
+			animation-delay: 0.04s;
+		}
+
+		&:nth-child(4) {
+			animation-duration: 0.84s;
+			animation-delay: 0.18s;
 		}
 	}
 
@@ -172,21 +186,55 @@
 			backdrop-filter: none;
 		}
 
-		.nav__burger-line {
-			background: $color-ink;
+		.nav__eq-bar {
+			box-shadow: 0 0 vc(10) rgb(255 179 71 / 45%);
+			background: $color-accent-bright;
+			animation: none;
 
-			&:nth-child(1) {
-				transform: rotate(45deg);
-			}
-
-			&:nth-child(2) {
+			&:nth-child(1),
+			&:nth-child(4) {
 				opacity: 0;
-				transform: scaleX(0);
+				transform: scaleY(0.15);
 			}
 
+			&:nth-child(2),
 			&:nth-child(3) {
-				transform: rotate(-45deg);
+				opacity: 1;
+				transform: scaleY(0.88);
 			}
+		}
+	}
+}
+
+@keyframes nav-eq-pulse {
+	0% {
+		transform: scaleY(0.28);
+	}
+
+	100% {
+		transform: scaleY(1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.nav:not(.is-open) .nav__eq-bar {
+		transform: scaleY(0.55);
+		animation: none;
+
+		&:nth-child(1) {
+			transform: scaleY(0.4);
+		}
+
+		&:nth-child(2) {
+			transform: scaleY(0.75);
+		}
+
+		&:nth-child(3) {
+			transform: scaleY(0.55);
+		}
+
+		&:nth-child(4) {
+			transform: scaleY(0.9);
 		}
 	}
 }

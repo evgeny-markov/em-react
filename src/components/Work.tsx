@@ -16,28 +16,61 @@ function Work() {
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         gsap.from('.work__head > *', {
-          y: 36,
+          y: 44,
           autoAlpha: 0,
-          duration: 0.85,
+          filter: 'blur(12px)',
+          duration: 0.95,
           stagger: 0.1,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: rootRef.current,
             start: 'top 75%',
           },
+          clearProps: 'filter',
         })
 
-        gsap.from('.work__item', {
-          y: 48,
-          autoAlpha: 0,
-          scale: 0.96,
-          duration: 0.8,
-          stagger: 0.08,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.work__list',
-            start: 'top 82%',
+        ScrollTrigger.batch('.work__item', {
+          start: 'top 88%',
+          onEnter: (batch) => {
+            gsap.fromTo(
+              batch,
+              {
+                y: 64,
+                autoAlpha: 0,
+                rotateX: 28,
+                scale: 0.9,
+                filter: 'blur(14px)',
+                transformOrigin: '50% 100%',
+              },
+              {
+                y: 0,
+                autoAlpha: 1,
+                rotateX: 0,
+                scale: 1,
+                filter: 'blur(0px)',
+                duration: 0.9,
+                stagger: 0.1,
+                ease: 'power3.out',
+                overwrite: 'auto',
+                clearProps: 'filter',
+              },
+            )
+
+            gsap.fromTo(
+              batch.map((el) => el.querySelector('.work__orbit')).filter(Boolean),
+              { scale: 0, autoAlpha: 0 },
+              {
+                scale: 1,
+                autoAlpha: 1,
+                duration: 0.55,
+                stagger: 0.1,
+                delay: 0.2,
+                ease: 'back.out(2)',
+                overwrite: 'auto',
+              },
+            )
           },
+          once: true,
         })
       })
 

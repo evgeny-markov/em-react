@@ -16,22 +16,25 @@ function Skills() {
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         gsap.from('.skills__head > *', {
-          y: 36,
+          y: 44,
           autoAlpha: 0,
-          duration: 0.85,
+          filter: 'blur(12px)',
+          duration: 0.95,
           stagger: 0.1,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: rootRef.current,
             start: 'top 75%',
           },
+          clearProps: 'filter',
         })
 
-        gsap.utils.toArray<HTMLElement>('.skills__group').forEach((group) => {
-          gsap.from(group, {
-            y: 48,
+        gsap.utils.toArray<HTMLElement>('.skills__group').forEach((group, groupIndex) => {
+          gsap.from(group.querySelector('.skills__group-title'), {
+            y: 28,
             autoAlpha: 0,
-            duration: 0.8,
+            letterSpacing: '0.28em',
+            duration: 0.75,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: group,
@@ -39,16 +42,26 @@ function Skills() {
             },
           })
 
-          gsap.from(group.querySelectorAll('.skills__tag'), {
-            scale: 0.7,
+          const tags = group.querySelectorAll('.skills__tag')
+
+          gsap.from(tags, {
+            x: () => gsap.utils.random(-48, 48),
+            y: () => gsap.utils.random(36, 72),
+            rotate: () => gsap.utils.random(-18, 18),
+            scale: 0.55,
             autoAlpha: 0,
-            duration: 0.45,
-            stagger: 0.04,
-            ease: 'back.out(1.6)',
+            filter: 'blur(8px)',
+            duration: 0.7,
+            stagger: {
+              each: 0.045,
+              from: groupIndex % 2 === 0 ? 'start' : 'center',
+            },
+            ease: 'back.out(1.5)',
             scrollTrigger: {
               trigger: group,
               start: 'top 80%',
             },
+            clearProps: 'filter',
           })
         })
       })

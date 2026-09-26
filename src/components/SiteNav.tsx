@@ -126,16 +126,17 @@ function SiteNav({ ready }: SiteNavProps) {
         </a>
 
         <button
-          className="nav__burger"
+          className="nav__eq"
           type="button"
           aria-expanded={isOpen}
           aria-controls="nav-panel"
           aria-label={isOpen ? 'Закрыть меню' : 'Открыть меню'}
           onClick={toggleMenu}
         >
-          <span className="nav__burger-line" />
-          <span className="nav__burger-line" />
-          <span className="nav__burger-line" />
+          <span className="nav__eq-bar" />
+          <span className="nav__eq-bar" />
+          <span className="nav__eq-bar" />
+          <span className="nav__eq-bar" />
         </button>
       </div>
 
