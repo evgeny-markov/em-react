@@ -47,7 +47,7 @@ export const experience = [
     ],
   },
   {
-    role: 'Junior Frontend-разработчик',
+    role: 'Frontend-разработчик (Junior)',
     company: 'Vide Infra Group',
     period: 'Апрель 2019 — Июнь 2019 · 3 мес.',
     summary:
