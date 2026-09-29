@@ -36,16 +36,20 @@ function Contact() {
           duration: 0.7,
         })
 
-        gsap.to('.contact__panel', {
-          boxShadow: '0 0 60px rgba(255, 122, 24, 0.22), 0 0 120px rgba(196, 77, 255, 0.16)',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.contact__panel',
-            start: 'top 75%',
-            end: 'top 40%',
-            scrub: true,
+        gsap.fromTo(
+          '.contact__panel',
+          { boxShadow: '0 0 0 1px rgba(196, 77, 255, 0.12)' },
+          {
+            boxShadow: '0 0 60px rgba(255, 122, 24, 0.22), 0 0 120px rgba(196, 77, 255, 0.16)',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: rootRef.current,
+              start: 'top 85%',
+              end: 'bottom bottom',
+              scrub: true,
+            },
           },
-        })
+        )
       }),
     { scope: rootRef },
   )
