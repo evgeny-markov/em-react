@@ -66,4 +66,9 @@ button {
 
 .is-loading {
 	overflow: hidden;
+	height: 100%;
+}
+
+.is-loading .page > :not(.loader) {
+	visibility: hidden;
 }

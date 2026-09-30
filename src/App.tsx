@@ -9,14 +9,7 @@ import SiteNav from '@/components/SiteNav'
 import Skills from '@/components/Skills'
 import SpaceBackground from '@/components/SpaceBackground'
 import Work from '@/components/Work'
-
-function scrollToTop() {
-  const root = document.documentElement
-  const previous = root.style.scrollBehavior
-  root.style.scrollBehavior = 'auto'
-  window.scrollTo(0, 0)
-  root.style.scrollBehavior = previous
-}
+import { scrollToTop } from '@/lib/scroll'
 
 function App() {
   const [ready, setReady] = useState(false)
@@ -46,6 +39,11 @@ function App() {
     }
   }, [showLoader])
 
+  const handleLoaderReveal = () => {
+    scrollToTop()
+    document.body.classList.remove('is-loading')
+  }
+
   const handleLoaderComplete = () => {
     scrollToTop()
     setShowLoader(false)
@@ -54,7 +52,9 @@ function App() {
 
   return (
     <div className="page">
-      {showLoader ? <PageLoader onComplete={handleLoaderComplete} /> : null}
+      {showLoader ? (
+        <PageLoader onReveal={handleLoaderReveal} onComplete={handleLoaderComplete} />
+      ) : null}
       <SpaceBackground active={ready} />
       <SiteNav ready={ready} />
       <main className="page__main">

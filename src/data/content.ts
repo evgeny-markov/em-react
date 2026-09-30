@@ -135,7 +135,7 @@ export const skillGroups = [
     items: [
       'UI end-to-end',
       'Design / UI review',
-      'AI-assisted frontend',
+      'AI-assisted',
       'Code review',
       'SEO / PWA',
       'i18n',

@@ -2,13 +2,16 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { useRef, useState } from 'react'
 
+import { scrollToTop } from '@/lib/scroll'
+
 gsap.registerPlugin(useGSAP)
 
 type PageLoaderProps = {
+  onReveal: () => void
   onComplete: () => void
 }
 
-function PageLoader({ onComplete }: PageLoaderProps) {
+function PageLoader({ onReveal, onComplete }: PageLoaderProps) {
   const rootRef = useRef<HTMLDivElement>(null)
   const barRef = useRef<HTMLDivElement>(null)
   const [percent, setPercent] = useState(0)
@@ -22,12 +25,18 @@ function PageLoader({ onComplete }: PageLoaderProps) {
         return
       }
 
+      scrollToTop()
+
       const progress = { value: 0 }
 
       gsap
         .timeline({
           defaults: { ease: 'power2.inOut' },
           onComplete: () => {
+            scrollToTop()
+            onReveal()
+            scrollToTop()
+
             gsap.to(root, {
               autoAlpha: 0,
               duration: 0.65,
