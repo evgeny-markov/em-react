@@ -5,6 +5,7 @@ export const site = {
   availability: 'Полная занятость · удалённо',
   telegramUrl: 'https://t.me/evgeniy_markov',
   hhUrl: 'https://hh.ru/resume/e952357aff068bca3e0039ed1f4b575a7a6c65',
+  githubUrl: 'https://github.com/evgeny-markov/em-react',
   heroLead:
     'Собираю понятные интерфейсы: от промо и лендингов до SPA/SSR, кабинетов и админок. 6+ лет коммерческого опыта.',
   about:

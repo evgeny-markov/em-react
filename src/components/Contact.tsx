@@ -73,7 +73,7 @@ function Contact() {
               target="_blank"
               rel="noreferrer noopener"
             >
-              Написать в Telegram
+              Telegram
             </a>
             <a
               className="contact__link contact__link--ghost"
@@ -81,7 +81,15 @@ function Contact() {
               target="_blank"
               rel="noreferrer noopener"
             >
-              Профиль hh.ru
+              Резюме
+            </a>
+            <a
+              className="contact__link contact__link--ghost"
+              href={site.githubUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              GitHub
             </a>
           </div>
         </div>
